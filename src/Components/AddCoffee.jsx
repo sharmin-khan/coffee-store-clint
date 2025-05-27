@@ -45,12 +45,13 @@ const AddCoffee = () => {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
-    >
-      <div className="text-center p-12 space-y-4 bg-[#F4F3F0] rounded-lg">
-        <h1 className="text-4xl playfair font-semibold text-[#374151]">
+    > 
+    <h1 className="text-[#374151] playfair font-semibold mb-12">← Back to Home</h1>
+      <div className="text-center text-[#374151] p-12 space-y-4 bg-[#F4F3F0] rounded-lg">
+        <h1 className="text-4xl playfair font-semibold">
           Add New Coffee
         </h1>
-        <p className="mb-8 text-[#374151]">
+        <p className="mb-8">
           Fill out the form below to add a new coffee item to your store.
           Include details like name, origin, taste, <br /> and category to keep
           your coffee collection updated.
@@ -94,12 +95,12 @@ const AddCoffee = () => {
               />
             </fieldset>
             <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-              <label className="label font-bold">Category</label>
+              <label className="label font-bold">Price</label>
               <input
                 type="text"
-                name="category"
+                name="price"
                 className="input w-full"
-                placeholder="Enter coffee category"
+                placeholder="Price per Cup"
               />
             </fieldset>
             <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
