@@ -1,5 +1,6 @@
 import React from "react";
-import backgroundImage from '../assets/images/more/1.png'
+import backgroundImage from "../assets/images/more/1.png";
+import Swal from "sweetalert2";
 
 const AddCoffee = () => {
   const handleAddCoffee = (e) => {
@@ -9,28 +10,43 @@ const AddCoffee = () => {
     // console.log(formData.entries());
     const newCoffee = Object.fromEntries(formData.entries());
     console.log(newCoffee);
-     //send coffeeData to the Database
-  fetch("http://localhost:3000/coffees", {
-    method: "POST",
-    headers: {
-      "content-type": "application/json"
-    },
-    body: JSON.stringify(newCoffee),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log("After adding coffee to DB" ,data);
-    });
+    //send coffeeData to the Database
+    fetch("http://localhost:3000/coffees", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newCoffee),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log("After adding coffee to DB" ,data);
+        if (data.insertedId) {
+          console.log("Added successfully.");
+
+          //sweet alert
+          Swal.fire({
+            title: "Coffee Added Successfully!",
+            icon: "success",
+            draggable: true,
+          });
+
+          form.reset();
+        }
+      });
   };
 
   return (
-    <div className="p-24"   style={{
-    backgroundImage: `url(${backgroundImage})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-  }}>
-      <div className="text-center p-12 space-y-4 bg-[#F4F3F0]">
+    <div
+      className="p-24"
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      <div className="text-center p-12 space-y-4 bg-[#F4F3F0] rounded-lg">
         <h1 className="text-4xl playfair font-semibold text-[#374151]">
           Add New Coffee
         </h1>
@@ -108,7 +124,7 @@ const AddCoffee = () => {
 
           <input
             type="submit"
-            className="btn w-full bg-[#D2B48C] text-[#374151]"
+            className="btn w-full bg-[#D2B48C] text-[#374151] font-bold"
             value="Add Coffee"
           />
         </form>
