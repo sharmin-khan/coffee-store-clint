@@ -1,3 +1,7 @@
 .playfair{
      font-family: "Playfair Display", serif;
 }
+.custom_slant {
+  transform: skewX(-7deg);
+  display: inline-block;
+}
