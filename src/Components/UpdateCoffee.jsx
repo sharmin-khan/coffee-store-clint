@@ -3,7 +3,9 @@ import backgroundImage from "../assets/images/more/1.png";
 import { useLoaderData } from "react-router";
 
 const UpdateCoffee = () => {
-  const {name,quantity,price,taste,supplier,details,photo} = useLoaderData();
+  const coffee = useLoaderData()
+  console.log(coffee);
+  const {_id,name,quantity,price,taste,supplier,details,photo} = useLoaderData();
 
   const handleUpdateCoffee = (e) => {
     e.preventDefault();
@@ -11,6 +13,19 @@ const UpdateCoffee = () => {
     const formData= new FormData(form);
     const updateCoffee = Object.fromEntries(formData.entries())
     console.log(updateCoffee);
+
+    //Send Updated Coffee to the DB
+    fetch(`http://localhost:3000/coffees/${_id}`,{
+    method:'PUT',
+    headers:{
+      'content-type': 'application/json'
+    },
+    body:JSON.stringify(updateCoffee),
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      console.log(data);
+    })
   };
 
   return (
