@@ -12,6 +12,7 @@ import Home from './Components/Home.jsx';
 import AddCoffee from './Components/AddCoffee.jsx';
 import UpdateCoffee from './Components/UpdateCoffee.jsx';
 import OurProduct from './Components/OurProduct.jsx';
+import CoffeeDetails from './Components/CoffeeDetails.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -31,7 +32,12 @@ const router = createBrowserRouter([
       Component:AddCoffee
     },
     {
-      path:'updateCoffee',
+      path:'coffee/:id',
+      Component:CoffeeDetails,
+    },
+    {
+      path:'updateCoffee/:id',
+      loader:({params})=>(`http://localhost:3000/coffees/${params.id}`),
       Component:UpdateCoffee
     }
 
